@@ -1,0 +1,173 @@
+/* Section 2 styling */
+@import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+.section2 {
+  /* position: relative; */
+  /* Section 2 background */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100vh;
+
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+
+  /* Ensure this section comes on top of the video */
+}
+.section2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* background: rgba(0, 0, 0, 0.5); */
+  z-index: 0; /* Place this behind the content */
+}
+.section2-content {
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  position: relative;
+  z-index: 1;
+  padding: 50px;
+  font-family: "Marcellus", serif;
+}
+
+.section2 .text {
+  width: 60%;
+  padding: 20px;
+  color: white;
+  /* Adjust text color */
+  font-size: 1.2rem;
+  margin-left: 50px;
+  max-height: 75vh;
+}
+
+.section2 .text h1 {
+  font-size: 2.75rem;
+  text-transform: uppercase;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  color: #ffffff;
+  word-spacing: 4px;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.section2 .text h2 {
+  font-size: 1.75rem;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  margin-top: 10px;
+  color: #ffffff;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+.section2 .text p {
+  font-size: 1.1rem;
+  /* Adjust the size as needed */
+  margin-bottom: 10px;
+  /* text-align: justify; */
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.section2 .image {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#small-globe {
+  width: 70%;
+  height: auto;
+  transition: all 0.5s ease-in-out;
+  /* position: absolute; */
+  right: 50px;
+  top: 50px;
+  z-index: 2;
+  /* margin-left: 100px; */
+}
+
+.section2 .text {
+  animation: fadeUp2 5s;
+}
+
+@keyframes fadeUp2 {
+  0% {
+    opacity: 0; /* Fully visible */
+    transform: translateY(50px); /* Start from original position */
+  }
+  100% {
+    opacity: 1; /* Fade out */
+    transform: translateY(0); /* Move up to 50px above its original position */
+  }
+}
+
+.fade-up2 {
+  animation: fadeUp2 0.5s !important;
+}
+
+/* Responsive adjustments for Section 2 */
+@media (max-width: 768px) {
+  .section2 {
+    padding: 10px;
+  }
+
+  .section2 .text {
+    padding: 2px 5px;
+    width: 60%;
+    margin-left: 10px;
+    /* height: 80vh; */
+  }
+
+  .section2 .text h1 {
+    font-size: 1.75rem;
+  }
+
+  .section2 .text h2 {
+    font-size: 1.25rem;
+  }
+
+  .section2 .text p {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .section2-content {
+    padding: 10px;
+  }
+
+  #small-globe {
+    width: 60%;
+    margin: 20px auto 0 auto;
+  }
+}
+
+@media (max-width: 508px) {
+  .section2-content {
+    margin-top: 1rem;
+  }
+
+  .section2 .text {
+    padding: 2px 5px;
+    width: 100%;
+    margin-left: 10px;
+    height: 80vh;
+  }
+
+  .section2 .text p {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+}

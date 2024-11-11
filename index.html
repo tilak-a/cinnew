@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cross-Origin-Opener-Policy" content="same-origin" />
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
+
+    <title>CIN-Web</title>
+    <link href="lib/sec1-bot.css" rel="stylesheet" />
+    <link href="lib/section1.css" rel="stylesheet" />
+    <link href="lib/section2.css" rel="stylesheet" />
+    <link href="lib/section3.css" rel="stylesheet" />
+    <link href="lib/section4.css" rel="stylesheet" />
+    <link href="lib/section5.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+        /* background-color: black; */
+        /*overflow-x: hidden;*/
+        margin: 0px !important;
+      }
+      .section {
+        transition: opacity 0.5s ease;
+      }
+
+      .section:not([style*="display: none"]) {
+        opacity: 1;
+      }
+
+      .section[style*="display: none"] {
+        opacity: 0;
+      }
+      .section {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        /* scroll-behavior: smooth; */
+        transition: transform 7s ease;
+      }
+
+      @media (max-width: 508px) {
+        .section {
+          height: 100dvh;
+        }
+      }
+
+      .section11 {
+        transition: opacity 0.5s ease;
+      }
+
+      .section11:not([style*="display: none"]) {
+        opacity: 1;
+      }
+
+      .section11[style*="display: none"] {
+        opacity: 0;
+      }
+      .section11 {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 160vh;
+        /* scroll-behavior: smooth; */
+        transition: transform 7s ease;
+      }
+      /* For a specific section or div */
+
+      .hide-section {
+        opacity: 0;
+        /* transform: translateX(-100%); */
+        transition: all 1s;
+      }
+      .show-section {
+        opacity: 1;
+        /* transform: translateX(0); */
+      }
+      .background-video-container {
+        position: fixed; /* Keep the video fixed in the background */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1; /* Ensure it's behind other content */
+        overflow: hidden; /* Hide overflow */
+      }
+
+      #background-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Make the video cover the area */
+        background: transparent;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+
+      .section {
+        position: relative; /* Stack context for child elements */
+        z-index: 1; /* Ensure content is above the video */
+      }
+
+      .section1,
+      .section2,
+      .section3 {
+        height: 100vh; /* Adjust this as needed for each section's height */
+      }
+
+      .myvideo2 {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        bottom: -70%;
+      }
+
+      .myvid1 {
+        position: fixed !important;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -90%;
+        width: 50%;
+        transition: all 0.1s ease-out;
+        will-change: transform, left, bottom;
+        z-index: 2;
+      }
+
+      /* @media (max-width: 769px) {
+        .myvid1 {
+          bottom: -100px !important;
+        }
+      } */
+
+      @media (max-width: 769px) {
+        .myvid1 {
+          bottom: -100px;
+        }
+
+        .section11 {
+          min-height: 60vh;
+        }
+      }
+
+      .myvid1.section2-position {
+        left: 80%;
+        bottom: 30%;
+        width: 30%;
+        transform: translateX(-50%) scale(0.8);
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .newhidden {
+        opacity: 0;
+      }
+
+      .nav-container {
+        max-width: 1300px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .nav-links {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        align-items: center;
+      }
+
+      .left-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .right-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        cursor: pointer;
+        padding-bottom: 5px;
+        position: relative;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #ca910b;
+        left: 50%;
+        bottom: -3px;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #ca910b;
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* .footer-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: #ca910b;
+        left: 50%;
+        bottom: -3px;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      } */
+
+      .footer-links a:hover {
+        color: #fff;
+      }
+
+      .footer-links a:hover::after {
+        width: 100%;
+      }
+
+      .logo-nav {
+        max-width: 135px;
+        height: auto;
+      }
+
+      /* Mobile Menu Styles */
+      .mobile-nav {
+        display: none;
+      }
+
+      .hamburger {
+        display: none;
+        width: 30px;
+        height: 20px;
+        position: relative;
+        cursor: pointer;
+        z-index: 100;
+      }
+
+      .hamburger span {
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        background: white;
+        transition: 0.25s ease-in-out;
+      }
+
+      .hamburger span:nth-child(1) {
+        top: 0;
+      }
+      .hamburger span:nth-child(2) {
+        top: 9px;
+      }
+      .hamburger span:nth-child(3) {
+        top: 18px;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        top: 9px;
+        transform: rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        top: 9px;
+        transform: rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .header1 {
+          background: transparent;
+        }
+
+        .nav-container {
+          justify-content: space-between;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-nav {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          margin-right: 2rem;
+        }
+
+        .hamburger {
+          display: block;
+        }
+
+        .logo-nav {
+          max-width: 150px;
+        }
+
+        .mobile-menu {
+          position: fixed;
+          top: -10px;
+          left: -1rem;
+          width: 110%;
+          height: 110vh;
+          background: black;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+          z-index: 90;
+        }
+
+        .mobile-menu.active {
+          transform: translateX(0);
+        }
+
+        .mobile-menu a {
+          color: white;
+          text-decoration: none;
+          font-family: Arial, sans-serif;
+          font-size: 18px;
+          position: relative;
+        }
+
+        .mobile-menu a::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 2px;
+          background: #ca910b;
+          left: 50%;
+          bottom: -3px;
+          transform: translateX(-50%);
+          transition: width 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+          color: #ca910b;
+        }
+
+        .mobile-menu a:hover::after {
+          width: 100%;
+        }
+
+        .copyright {
+          margin-top: 1.5rem;
+        }
+      }
+
+      video {
+        /* Remove default background */
+        background: transparent;
+        mix-blend-mode: screen;
+        /* For Safari */
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+        /* For better compatibility across browsers */
+        mask-image: radial-gradient(white, black);
+      }
+      /* @supports (-webkit-touch-callout: none) {
+        .myvid1 {
+          mix-blend-mode: normal;
+        }
+      } */
+      video::-webkit-media-controls,
+      video::-webkit-media-controls-enclosure,
+      video::-webkit-media-controls-panel,
+      video::-webkit-media-controls-overlay-play-button,
+      video::-webkit-media-controls-play-button,
+      video::-webkit-media-controls-start-playback-button {
+        display: none !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+      }
+
+      /* Ensure video plays on iOS */
+      video[playsinline] {
+        -webkit-playsinline: true;
+        playsinline: true;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Video -->
+    <div class="background-video-container">
+      <video
+        playsinline
+        autoplay
+        muted
+        loop
+        webkit-playsinline
+        id="background-video"
+      >
+        <source src="assets/banner-v.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <header
+      data-aos="fade-up"
+      data-aos-anchor-placement="top-center"
+      data-aos-duration="1500"
+      class="header1"
+      id="header1"
+    >
+      <nav class="nav-container">
+        <div class="nav-links">
+          <div class="left-links">
+            <a class="alink" href="#home">Home</a>
+            <a class="alink" href="#about">About Us</a>
+            <a class="alink" href="#why">Why Choose Us</a>
+            <a class="alink" href="#services">Our Services</a>
+          </div>
+          <img class="logo-nav" src="assets/cin-logo.png" alt="logo" />
+          <div class="right-links">
+            <a class="alink" href="#clients">Clients</a>
+            <a class="alink" href="#portfolio">Our Portfolio</a>
+            <a class="alink" href="#segments">Segments</a>
+            <a class="alink" href="#contact">Contact Us</a>
+          </div>
+        </div>
+
+        <div class="mobile-nav">
+          <img class="logo-nav" src="assets/cin-logo.png" alt="logo" />
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#why">Why Choose Us</a>
+          <a href="#services">Our Services</a>
+          <a href="#clients">Clients</a>
+          <a href="#portfolio">Our Portfolio</a>
+          <a href="#segments">Segments</a>
+          <a href="#contact">Contact Us</a>
+        </div>
+      </nav>
+    </header>
+    <!-- Section1 -->
+    <section id="section1" class="section section1">
+      <video
+        data-planet="Sun"
+        playsinline
+        autoplay
+        loop
+        muted
+        class="myvid1"
+        id="sunVideo"
+      >
+        <source src="assets/globs/sunoutputnew.mov" type="video/quicktime" />
+        <source src="assets/globs/sun.webm" />
+      </video>
+
+      <div class="header">
+        <!-- <img
+          data-aos="fade-down"
+          data-aos-anchor-placement="top-center"
+          data-aos-duration="500"
+          src="assets/cin-logo.png"
+          alt=""
+        /> -->
+        <h1 data-aos="zoom-in" data-aos-duration="1500">
+          creativity in nature
+        </h1>
+        <h2 data-aos="zoom-in" data-aos-delay="1500" data-aos-duration="2000">
+          The shining star of digital success
+        </h2>
+        <button
+          data-aos="zoom-in"
+          data-aos-delay="2000"
+          data-aos-duration="2500"
+          class="button-84"
+          role="button"
+        >
+          MAKE A WISH
+        </button>
+      </div>
+    </section>
+
+    <!-- Section2 -->
+    <section id="section2" class="section section2">
+      <div class="section2-content">
+        <div
+          id="sect2-text"
+          data-aos="zoom-out-up"
+          data-aos-offset="200"
+          data-aos-delay="50"
+          data-aos-duration="2000"
+          data-aos-mirror="true"
+          class="text"
+        >
+          <h1>creativity in nature</h1>
+          <h2>Digital Marketing Agency</h2>
+          <p>
+            CIN is a joyous celebration of human creativity. We are a group of
+            hand-picked, like-minded professionals who have come together to
+            make the ultimate creative team. Each of us is a game-changing
+            expert in our respective areas. Together, we are CIN. We help
+            clients harness the magic of social media, develop a domineering web
+            presence, generate leads, grow brands and straight-up design their
+            products, processes and projects as needed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 -->
+    <section id="section3" class="section section3">
+      <div class="section3-content">
+        <div class="text">
+          <h3 id="section-default-title">Why Choose Us ?</h3>
+          <h1 id="section-title"></h1>
+          <h2 id="section-subtitle"></h2>
+          <p id="section-description"></p>
+        </div>
+        <div class="footer">
+          <div class="planet-container">
+            <div class="planet-links" id="planet-name">
+              <a
+                href="#"
+                class="name planet1"
+                data-planet="Mercury"
+                data-subtitle="Guaranteed Revenue or Your Money Back"
+                data-description="Tired of getting everything except revenue? Most vendors who give you reach, engagement, promises, likes and efforts but no revenue but we stand behind our services and guarantee realistic revenue or your money back."
+                >Mercury</a
+              >
+              <a
+                href="#"
+                class="name planet2"
+                data-planet="Venus"
+                data-subtitle="24/7 Customer Care"
+                data-description="Are you an early morning bird or late night owl? At CIN, we are available, 24 hours a day, 7 days a week and 365 days a year. We understand that business never stops and creative ideas and calamities can happen anytime."
+                >Venus</a
+              >
+              <a
+                href="#"
+                class="name planet3"
+                data-planet="Earth"
+                data-subtitle="Responsive Relationship Manager"
+                data-description="Are you trying to reach your client manager for decades but not getting a proper response? No worries, CIN has heard your prayers. As a CIN client, you will be assigned a responsive “Super Man(ager)” who will reach out to you faster than Superman."
+                >Earth</a
+              >
+              <a
+                href="#"
+                class="name planet4"
+                data-planet="Mars"
+                data-subtitle="Data Driven Decision Making"
+                data-description="Are you following superstition to predict rain? Superstition will give you only assumptions while weather forecasts will give you accurate updates based on data analysis. Similarly, CIN will follow your data instead of assumptions."
+                >Mars</a
+              >
+              <a
+                href="#"
+                class="name planet5"
+                data-planet="Jupiter"
+                data-subtitle="One Stop Shop"
+                data-description="Have you become a common man in a government office where your file is being shifted from desk to desk? At CIN, we offer a complete range of services to ensure that you don’t have to find different vendors for different services."
+                >Jupiter</a
+              >
+              <a
+                href="#"
+                class="name planet6"
+                data-planet="Saturn"
+                data-subtitle="Experienced Team"
+                data-description="Are you expecting fine cuisine but getting dhaba food instead? Experience matters. This is why at CIN, we only hire professionals with at least 5 years of industry experience. This guarantees a mature, knowledgeable and error-free handling of your account so you get a BMW while expecting an Ambassador."
+                >Saturn</a
+              >
+              <a
+                href="#"
+                class="name planet7"
+                data-planet="Uranus"
+                data-subtitle="Data Security"
+                data-description="Are you sure your comp is not using your data? Most companies leak data like a cheap Chinese Tire tube. At CIN, we will ensure your data is safer than a bank safe so your competition can never take advantage of you."
+                >Uranus</a
+              >
+              <a
+                href="#"
+                class="name planet8"
+                data-planet="Neptune"
+                data-subtitle="Timely delivery"
+                data-description="What is the use of medicine after the patient is dead? At CIN, we understand the concept of urgency and the importance of timely delivery. Therefore we meet and beat every deadline so that your business runs like clockwork."
+                >Neptune</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <input type="hidden" id="hiddenInput" value="0" />
+    <input type="hidden" id="hiddenInputCircle" value="0" />
+
+    <!-- Section 4 -->
+    <section id="section4" class="section section4">
+      <video
+        playsinline
+        autoplay
+        muted
+        loop
+        defaultMuted
+        id="video-1"
+        class="video-bg"
+      >
+        <source src="assets/globs/services01.mov" type="video/quicktime" />
+        <source src="assets/globs/services01.webm" />
+        Your browser does not support the video tag.
+      </video>
+      <video
+        playsinline
+        autoplay
+        muted
+        defaultMuted
+        id="video-42"
+        class="video-bg42"
+      >
+        <source src="assets/globs/servives02.webm" />
+        Your browser does not support the video tag.
+      </video>
+
+      <div id="section4-content" class="content newhidden">
+        <div class="planet-container">
+          <img
+            data-aos="zoom-in"
+            data-aos-duration="2500"
+            src="assets/cin-logo.png"
+            alt="Current Globe"
+            class="sect4-logo"
+          />
+          <div class="services" id="service1">
+            <a href="#" class="service">PAY PER CLICK</a>
+            <a href="#" class="service">REVENUE <br />MANAGEMENT</a>
+            <a href="#" class="service">CREATIVE DESIGN</a>
+            <a href="#" class="service"
+              >SOCIAL MEDIA <br />
+              OPTIMISATION</a
+            >
+            <a href="#" class="service"
+              >PHOTOGRAPHY / <br />
+              VIDEOGRAPHY</a
+            >
+            <a href="#" class="service"
+              >ONLINE REPUTATION <br />
+              MANAGEMENT</a
+            >
+            <a href="#" class="service">WEBSITE DESIGN</a>
+            <a href="#" class="service"
+              >INFLUENCER <br />
+              MARKETING</a
+            >
+            <a href="#" class="service"
+              >SEARCH ENGINE <br />
+              OPTIMISATION</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5 -->
+    <section id="section5" class="section section5">
+      <video
+        playsinline
+        autoplay
+        muted
+        defaultMuted
+        loop
+        class="fullscreen-video"
+      >
+        <source src="assets/globs/clients.m4v" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      <video
+        playsinline
+        autoplay
+        muted
+        defaultMuted
+        loop
+        class="fullscreen-video2"
+      >
+        <source src="assets/globs/clients21.webm" />
+        Your browser does not support the video tag.
+      </video>
+
+      <footer class="footer-container">
+        <div class="footer-flex">
+          <div>
+            <img class="logo-footer" src="assets/cin-logo.png" alt="logo" />
+          </div>
+          <div class="footer-links">
+            <a class="alink" href="#home">Home</a>
+            <a class="alink" href="#about">About Us</a>
+            <a class="alink" href="#why">Why Choose Us</a>
+            <a class="alink" href="#services">Our Services</a>
+          </div>
+          <div class="footer-links">
+            <a class="alink" href="#clients">Clients</a>
+            <a class="alink" href="#portfolio">Our Portfolio</a>
+            <a class="alink" href="#segments">Segments</a>
+            <a class="alink" href="#contact">Contact Us</a>
+          </div>
+        </div>
+        <p class="copyright" style="text-align: center">
+          &copy; 2024 Your Company Name. All rights reserved.
+        </p>
+      </footer>
+    </section>
+
+    <script src="lib/js/jquery.js"></script>
+    <!-- <script>
+      function lazyLoadVideo() {
+        const videos = document.querySelectorAll("video[data-src]");
+        console.log("videos...", videos);
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const video = entry.target;
+              video.src = video.dataset.src;
+              video.removeAttribute("data-src");
+              observer.unobserve(video);
+            }
+          });
+        });
+
+        videos.forEach((video) => {
+          observer.observe(video);
+        });
+      }
+
+      window.addEventListener("DOMContentLoaded", lazyLoadVideo);
+    </script> -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="lib/js/custom.js"></script>
+    <script src="lib/js/transition.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+
+      function supportsHEVCAlpha() {
+        const navigator = window.navigator;
+        const ua = navigator.userAgent.toLowerCase();
+        const hasMediaCapabilities = !!(
+          navigator.mediaCapabilities &&
+          navigator.mediaCapabilities.decodingInfo
+        );
+        const isSafari =
+          ua.indexOf("safari") != -1 &&
+          !(ua.indexOf("chrome") != -1) &&
+          ua.indexOf("version/") != -1;
+
+        return isSafari && hasMediaCapabilities;
+      }
+
+      function isIE11() {
+        return !!window.navigator.userAgent.match(/Trident\/7\./, []);
+      }
+
+      function updatePlanetPositions() {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const ismobile = window.matchMedia("(max-width: 520px)").matches;
+        const planetLinks = document.querySelectorAll(".planet-links a");
+
+        // Dynamically set the diameter and radius
+        let arcDiameter = Math.min(screenWidth, screenHeight) * 0.75; // Set the arc diameter to 80% of the smallest dimension
+        if (ismobile) {
+          arcDiameter = Math.min(screenWidth, screenHeight) * 0.65;
+        }
+        const arcRadius = arcDiameter / 2;
+
+        // Position planets
+        const totalPlanets = planetLinks.length;
+        const angleStep = 180 / (totalPlanets - 1);
+
+        planetLinks.forEach((link, index) => {
+          const angle = -180 + angleStep * index;
+          const x = arcRadius * Math.cos((angle * Math.PI) / 180);
+          const y = arcRadius * Math.sin((angle * Math.PI) / 180);
+
+          link.style.transform = `translate(${
+            x - (ismobile ? (index == 7 ? 20 : 24) : 20)
+          }px, ${y + (ismobile && index == 7 ? 11.5 : 5)}px) rotate(${
+            index == 7 && !ismobile ? angle + 87 : angle + 90
+          }deg)`;
+          link.style.bottom = "15px";
+          link.style.marginLeft =
+            index == 0 ? "0px" : index == 7 ? "-6px" : "5px";
+          link.style.fontWeight = "2rem";
+          link.style.left = "50%";
+          link.style.zIndex = "10";
+          link.style.transformOrigin = "center center";
+        });
+      }
+
+      window.addEventListener("resize", updatePlanetPositions);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const globe = document.getElementById("vid");
+        const sectionDefaultTitle = document.getElementById(
+          "section-default-title"
+        );
+        const sectionTitle = document.getElementById("section-title");
+        const sectionSubtitle = document.getElementById("section-subtitle");
+        const sectionDescription = document.getElementById(
+          "section-description"
+        );
+        const planetLinks = document.querySelectorAll(".planet-links a");
+        const sunVideo = document.getElementById("sunVideo");
+
+        // Diameter and radius of the circular arc
+        // const arcDiameter = 570; // Arc diameter
+        // const arcRadius = arcDiameter / 2 - 50;
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        const ismobile = window.matchMedia("(max-width: 520px)").matches;
+        const is1400 = window.matchMedia("(min-width: 1400px)").matches;
+
+        const service1 = document.getElementById("service1");
+        service1.onclick = function (event) {
+          if (ismobile) {
+            // Prevent clicking the container from triggering multiple times
+            if (event.target === event.currentTarget) {
+              return;
+            }
+
+            // Get the clicked service link
+            const clickedLink = event.target.closest("a");
+            if (clickedLink) {
+              // Get the href attribute
+              const href = clickedLink.getAttribute("href");
+
+              // Navigate to the href (you can modify this based on your needs)
+              if (href) {
+                window.location.href = href;
+                // Or for smooth scrolling to an element:
+                // document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }
+        };
+
+        // Dynamically set the diameter and radius based on the viewport size
+        let arcDiameter = Math.min(screenWidth, screenHeight) * 0.75; // Set the arc diameter to 80% of the smallest dimension
+        if (ismobile) {
+          arcDiameter = Math.min(screenWidth, screenHeight) * 0.65;
+        }
+
+        const arcRadius = arcDiameter / 2;
+
+        // Positioning planets in an arc
+        const totalPlanets = planetLinks.length;
+        const angleStep = 180 / (totalPlanets - 1); // Angle step to distribute planets across the arc (half-circle)
+
+        planetLinks.forEach((link, index) => {
+          const angle = -180 + angleStep * index; //const angle = angleStep * index - 90; // Calculate the angle for each planet (-180° to start at the bottom center)
+
+          // Calculate X and Y positions based on the angle
+          const x = arcRadius * Math.cos((angle * Math.PI) / 180);
+          const y = arcRadius * Math.sin((angle * Math.PI) / 180);
+
+          // Rotate each link based on its angle to follow the arc curvature
+          link.style.transform = `translate(${
+            x - (ismobile ? (index == 7 ? 20 : 24) : 20)
+          }px, ${y + (ismobile && index == 7 ? 11.5 : 5)}px) rotate(${
+            index == 7 && !ismobile ? angle + 87 : angle + 90
+          }deg)`;
+
+          link.style.bottom = "15px";
+          link.style.marginLeft =
+            index == 0 ? "0px" : index == 7 ? "-6px" : "5px";
+          link.style.fontWeight = "2rem";
+          link.style.left = "50%";
+          link.style.zIndex = 10;
+
+          // Optionally adjust anchor point or text alignment for better visual alignment
+          link.style.transformOrigin = "center center";
+        });
+
+        // Click event handler for planet links
+        planetLinks.forEach((link) => {
+          link.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            let sectionCurrentTitle = document.getElementById("section-title");
+            let sectionCurrentSubtitle =
+              document.getElementById("section-subtitle");
+            let sectionCurrentDescription = document.getElementById(
+              "section-description"
+            );
+
+            sectionDefaultTitle.classList.add("fade-up");
+            setTimeout(() => {
+              sectionDefaultTitle.classList.add("hidden");
+            }, 300);
+
+            // Remove active state from all planets
+            planetLinks.forEach(
+              (link) =>
+                (link.style.transform = link.style.transform.replace(
+                  " translateY(-15px)",
+                  ""
+                ))
+            );
+
+            // Set the clicked link to move up slightly
+            // setTimeout(() => {
+            sectionCurrentTitle.classList.remove("fade-in");
+            sectionCurrentSubtitle.classList.remove("fade-in");
+            sectionCurrentDescription.classList.remove("fade-in");
+            // }, 500);
+            // setTimeout(() => {
+            this.style.transform += " translateY(-15px)"; // Move the clicked planet up slightly
+            sectionCurrentTitle.classList.add("fade-up");
+            sectionCurrentSubtitle.classList.add("fade-up");
+            sectionCurrentDescription.classList.add("fade-up");
+            // }, 300); // Delay for the transition effect
+
+            // Get data attributes from the clicked link
+            const planet = this.getAttribute("data-planet");
+            const subtitle = this.getAttribute("data-subtitle");
+            const description = this.getAttribute("data-description");
+            if (!isIE11()) {
+              if (planet == "Mercury") {
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                globe.classList.add("fade-down-left");
+                setTimeout(() => {
+                  globe.src = supportsHEVCAlpha()
+                    ? "assets/globs/mercuryoutputnew.mov"
+                    : "assets/globs/Mercury.webm";
+                  // globe.src = "assets/globs/Mercury.webm";
+                }, 200);
+              } else if (planet == "Venus") {
+                globe.classList.add("fade-down-left");
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                // globe.src = "assets/globs/Venus.webm";
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/venusoutputnew.mov"
+                  : "assets/globs/Venus.webm";
+              } else if (planet == "Earth") {
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                // globe.src = "assets/globs/Earth.webm";
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/earthouputnew.mov"
+                  : "assets/globs/Earth.webm";
+              } else if (planet == "Mars") {
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                // globe.src = "assets/globs/Mars.webm";
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/marsoutputnew.mov"
+                  : "assets/globs/Mars.webm";
+              } else if (planet == "Jupiter") {
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/jupiteroutputnew.mov"
+                  : "assets/globs/Jupiter.webm";
+                // globe.src = "assets/globs/Jupiter.webm";
+              } else if (planet == "Saturn") {
+                // sunVideo.style.transform = `translateX(-50%) scale(1)`;
+
+                // globe.src = "assets/globs/Saturn.webm";
+                sunVideo.style.transform = `translateX(-50%) scale(0.2)`;
+
+                // Grow to full size
+                setTimeout(() => {
+                  sunVideo.style.transition =
+                    "transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1)";
+                  sunVideo.style.transform = `translateX(-50%) scale(1)`;
+                }, 300);
+
+                // Reset transition timing
+                setTimeout(() => {
+                  sunVideo.style.transition = "0.5s ease-out";
+                }, 900);
+                // globe.src = "assets/globs/Saturn.webm";
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/saturnoutputnew.mov"
+                  : "assets/globs/Saturn.webm";
+              } else if (planet == "Uranus") {
+                sunVideo.style.transform = `translateX(-50%) scale(0.52)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.72)`;
+                }
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/uranusoutputnew.mov"
+                  : "assets/globs/Uranus.webm";
+              } else if (planet == "Neptune") {
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                // globe.src = "assets/globs/Neptune.webm";
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/neptuneoutputnew.mov"
+                  : "assets/globs/Neptune.webm";
+                globe.classList.add("fade-down-left");
+              } else {
+                sunVideo.style.transform = `translateX(-50%) scale(0.56)`;
+                if (ismobile) {
+                  sunVideo.style.transform = `translateX(-50%) scale(0.75)`;
+                }
+                // globe.src = "assets/globs/sun.webm";
+                globe.src = supportsHEVCAlpha()
+                  ? "assets/globs/sunoutputnew.mov"
+                  : "assets/globs/sunoutputnew.webm";
+              }
+            }
+
+            function isAppleDevice() {
+              return /iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent);
+            }
+
+            if (supportsHEVCAlpha()) {
+              sunVideo.src = "assets/globs/sunoutputnew.mov";
+              globe.src = "assets/globs/sunoutputnew.mov";
+            }
+            // Wait for transition to finish before updating text
+            setTimeout(() => {
+              sectionTitle.textContent = planet;
+              sectionSubtitle.textContent = subtitle;
+              sectionDescription.textContent = description;
+
+              sectionTitle.classList.add("fade-in");
+              sectionSubtitle.classList.add("fade-in");
+              sectionDescription.classList.add("fade-in");
+            }, 100); // Match this duration with the CSS transition duration*/
+          });
+        });
+      });
+    </script>
+
+    <script>
+      const hamburger = document.querySelector(".hamburger");
+      const mobileMenu = document.querySelector(".mobile-menu");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+      });
+
+      // Close menu when clicking a link
+      const mobileLinks = document.querySelectorAll(".mobile-menu a");
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          mobileMenu.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
